@@ -31,9 +31,14 @@ fun Double.rotmod(n : Number) = ((this.rem(n.toDouble())) + n.toDouble()) % n.to
 fun CharSequence.rpad(character : Char = '0', count : Int = 2) = this.padEnd(length = count, padChar = character).toString()
 fun CharSequence.lpad(character : Char = '0', count : Int = 2) = this.padStart(length = count, padChar = character).toString()
 
-fun <T> ArrayList<T>.pop() : T? {
-    if (this.isEmpty()) return null
-    val value = this.get(0)
-    this.removeAt(0)
-    return value
+fun <T> MutableList<T>.pop() : T? = if (this.isEmpty()) null else this.removeAt(this.size-1)
+fun <T> MutableList<T>.push(vararg elements : T) : Int {
+    this.addAll(elements)
+    return this.size
+}
+
+fun <T> MutableList<T>.shift() : T? = if (this.isEmpty()) null else this.removeAt(0)
+fun <T> MutableList<T>.unshift(vararg elements : T): Int {
+    this.addAll(0, elements.toList())
+    return this.size
 }

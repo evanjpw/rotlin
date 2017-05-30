@@ -66,13 +66,13 @@ class EventQueue {
     fun get() : Event? {
         if (events.isEmpty()) { return null }
 
-        val xtime = eventTimes.pop() ?: 0
+        val xtime = eventTimes.shift() ?: 0
         if (xtime > 0) { /* advance */
             time += xtime
             eventTimes.indices.forEach { eventTimes[it] -= xtime }
         }
 
-        return events.pop()
+        return events.shift()
     }
 
     /**
