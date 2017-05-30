@@ -2,7 +2,6 @@ Files to convert:
 * color.js
 * engine.js
 * lighting.js
-* text.js
 * display/backend.js
 * display/display.js
 * display/hex.js
@@ -23,8 +22,6 @@ Files to convert:
 * map/map.js
 * map/rogue.js
 * map/uniform.js
-* noise/noise.js
-* noise/simplex.js
 * path/astar.js
 * path/dijkstra.js
 * path/path.js
@@ -41,7 +38,6 @@ Tests to covert:
 * tests/fov.js
 * tests/path.js
 * tests/scheduler.js
-* tests/text.js
 
 Things to work on:
-* StringGenerator.kt <--- Almost certainly wrong! generate() produces obviously incorrect results
+* StringGenerator.kt <--- **Almost certainly wrong!** generate() produces obviously incorrect results

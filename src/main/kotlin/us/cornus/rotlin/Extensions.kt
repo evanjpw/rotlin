@@ -22,6 +22,19 @@ inline fun <reified T> Array<T>.randomize() : Array<T> {
     return result.toTypedArray()
 }
 
+inline fun <reified T> ArrayList<T>.randomize() : ArrayList<T> {
+    if (this.isEmpty()) return this
+    val result = ArrayList<T>()
+    val indices = ArrayList<Int>(this.size)
+    indices += this.indices
+    while(indices.isNotEmpty()) {
+        val index = indices[randomIndex(indices.size)]
+        result.add(this[index])
+        indices.remove(index)
+    }
+    return result
+}
+
 fun Byte.rotmod(n : Number) = ((this.rem(n.toByte())) + n.toByte()) % n.toByte()
 fun Short.rotmod(n : Number) = ((this.rem(n.toShort())) + n.toShort()) % n.toShort()
 fun Int.rotmod(n : Number) = ((this.rem(n.toInt())) + n.toInt()) % n.toInt()
