@@ -22,9 +22,6 @@ Files to convert:
 * map/map.js
 * map/rogue.js
 * map/uniform.js
-* path/astar.js
-* path/dijkstra.js
-* path/path.js
 * scheduler/scheduler-action.js
 * scheduler/scheduler-simple.js
 * scheduler/scheduler-speed.js
@@ -36,7 +33,6 @@ Tests to covert:
 * tests/dungeon.js
 * tests/engine.js
 * tests/fov.js
-* tests/path.js
 * tests/scheduler.js
 
 Things to work on:

@@ -176,7 +176,4 @@ class StringGenerator (private val words: Boolean = false, private val order: In
         return joinableReturnValue
     }
 
-    /*
-
-     */
 }

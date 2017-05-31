@@ -11,6 +11,7 @@ data class RNGState(val s0: Double, val s1 : Double, val s2 : Double, val c : Do
  * This code is an implementation of Alea algorithm; (C) 2010 Johannes Baagøe.
  * Alea is licensed according to the http://en.wikipedia.org/wiki/MIT_License.
  */
+//Should be sealed but that makes Idea very angry
 open class RNGType(private var s0: Double = 0.0, private var s1: Double = 0.0, private var s2: Double = 0.0, private var c: Double = 0.0) {
     private val frac =  2.3283064365386963e-10
     var seed = 0.0
@@ -133,7 +134,7 @@ open class RNGType(private var s0: Double = 0.0, private var s1: Double = 0.0, p
     fun clone() = copy()
 }
 
-val RNG = object : RNGType() {
+object RNG : RNGType() {
 
     init {
         seed = System.currentTimeMillis().toDouble()

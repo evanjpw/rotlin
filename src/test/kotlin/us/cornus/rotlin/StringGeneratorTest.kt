@@ -9,7 +9,7 @@ import java.util.logging.Logger
  * Created by ejw on 5/28/17.
  */
 class StringGeneratorTest {
-    val logger = Logger.getLogger(StringGeneratorTest::class.java.simpleName)
+    val logger: Logger = Logger.getLogger(StringGeneratorTest::class.java.simpleName)
 
     @Test
     fun clearTest() {
@@ -62,7 +62,7 @@ class StringGeneratorTest {
 
     companion object {
         val EMPTY_STATS = "distinct samples: 0, dictionary size (contexts): 0, dictionary size (events): 0"
-        val TRAINING_SET1 = listOf<String>(
+        val TRAINING_SET1 = listOf(
                 "Land of the glass pinecones",
                 "They only grow for the full moon",
                 "The farmers never gather them",

@@ -19,14 +19,15 @@ data class Token(val type : TokenType, var value : String = "")
  * @namespace
  * Contains text tokenization and breaking routines
  */
-open class ROTTextClass {
+
+object ROTText {
     val RE_COLORS = Regex("%([bc])\\{([^}]*)}") // was written with the 'g' flag following
 
     /* token types */
     val TYPE_TEXT = TokenType.TEXT
     val TYPE_NEWLINE = TokenType.NEWLINE
-    val TYPE_FG	= TokenType.FG
-    val TYPE_BG	= TokenType.BG
+    val TYPE_FG = TokenType.FG
+    val TYPE_BG = TokenType.BG
 
     init {
         assert(TYPE_TEXT.ordinal == 0)
@@ -38,7 +39,7 @@ open class ROTTextClass {
     /**
      * Measure size of a resulting text block
      */
-    fun measure(str : String, maxWidth : Int = Int.MAX_VALUE) : Dimension {
+    fun measure(str: String, maxWidth: Int = Int.MAX_VALUE): Dimension {
         val tokens = tokenize(str, maxWidth)
         var width = 0
         var height = 1
@@ -63,7 +64,7 @@ open class ROTTextClass {
                 }
         width = Math.max(width, lineWidth)
 
-        return Dimension(width=width, height=height) //result
+        return Dimension(width = width, height = height) //result
     }
 
     /**
@@ -75,7 +76,7 @@ open class ROTTextClass {
         /* first tokenization pass - split texts and color formatting commands */
         var offset = 0
         val nstr = istr.replace(RE_COLORS) { m ->
-            val match = m.value
+            //val match = m.value
             val type = m.groupValues[1]
             val name = m.groupValues[2]
             val index = m.range.start
@@ -115,8 +116,10 @@ open class ROTTextClass {
     }
 
     /* insert line breaks into first-pass tokenized data */
-    private fun _breakLines(tokens : ArrayList<Token>, iMaxWidth: Int): ArrayList<Token> {
-        val maxWidth = if (iMaxWidth == 0) { Int.MAX_VALUE } else iMaxWidth
+    private fun _breakLines(tokens: ArrayList<Token>, iMaxWidth: Int): ArrayList<Token> {
+        val maxWidth = if (iMaxWidth == 0) {
+            Int.MAX_VALUE
+        } else iMaxWidth
 
         var i = 0
         var lineLength = 0
@@ -134,7 +137,9 @@ open class ROTTextClass {
             }
 
             /* remove spaces at the beginning of line */
-            while (lineLength == 0 && token.value[0] == ' ') { token.value = token.value.substring(1) }
+            while (lineLength == 0 && token.value[0] == ' ') {
+                token.value = token.value.substring(1)
+            }
 
             /* forced newline? insert two new tokens after this one */
             val index = token.value.indexOf("\n")
@@ -143,7 +148,9 @@ open class ROTTextClass {
 
                 /* if there are spaces at the end, we must remove them (we do not want the line too long) */
                 val sb: StringBuilder = StringBuilder(token.value)
-                while (sb.isNotEmpty() && sb[sb.length-1] == ' ') { sb.deleteCharAt(sb.length-1) }
+                while (sb.isNotEmpty() && sb[sb.length - 1] == ' ') {
+                    sb.deleteCharAt(sb.length - 1)
+                }
                 token.value = sb.toString()
             }
 
@@ -158,9 +165,12 @@ open class ROTTextClass {
                 /* is it possible to break within this token? */
                 var index1 = -1
                 while (true) {
-                    val nextIndex = token.value.indexOf(" ", index1+1)
-                    if (nextIndex == -1) { break; }
-                    if (lineLength + nextIndex > maxWidth) { break }
+                    val nextIndex = token.value.indexOf(" ", index1 + 1)
+                    if (nextIndex == -1) {
+                        break; }
+                    if (lineLength + nextIndex > maxWidth) {
+                        break
+                    }
                     index1 = nextIndex
                 }
 
@@ -172,12 +182,14 @@ open class ROTTextClass {
                     token1.value = this._breakInsideToken(tokens, lastTokenWithSpace, breakIndex, true)
                     i = lastTokenWithSpace
                 } else { /* force break in this token */
-                    token.value = this._breakInsideToken(tokens, i, maxWidth-lineLength, false)
+                    token.value = this._breakInsideToken(tokens, i, maxWidth - lineLength, false)
                 }
 
             } else { /* line not long, continue */
                 lineLength += token.value.length
-                if (token.value.indexOf(" ") != -1) { lastTokenWithSpace = i }
+                if (token.value.indexOf(" ") != -1) {
+                    lastTokenWithSpace = i
+                }
             }
 
             i++ /* advance to next token */
@@ -187,7 +199,7 @@ open class ROTTextClass {
         tokens.add(Token(type = TYPE_NEWLINE)) /* insert fake newline to fix the last text line */
 
         /* remove trailing space from text tokens before newlines */
-        var lastTextToken : Token? = null
+        var lastTextToken: Token? = null
         for (j in tokens.indices) {
             val token = tokens[j]
             when (token.type) {
@@ -196,7 +208,7 @@ open class ROTTextClass {
                     if (lastTextToken != null) { /* remove trailing space */
                         val sb = StringBuilder(lastTextToken.value)
                         while (sb.isNotEmpty() && sb[sb.length - 1] == ' ') {
-                            sb.deleteCharAt(sb.length-1)
+                            sb.deleteCharAt(sb.length - 1)
                         }
                         lastTextToken.value = sb.toString()
                     }
@@ -208,7 +220,7 @@ open class ROTTextClass {
             }
         }
 
-        tokens.removeAt(tokens.size-1) /* remove fake token */
+        tokens.removeAt(tokens.size - 1) /* remove fake token */
 
         return tokens
     }
@@ -221,7 +233,7 @@ open class ROTTextClass {
      * @param {bool} removeBreakChar Do we want to remove the breaking character?
      * @returns {string} remaining unbroken token value
      */
-    private fun _breakInsideToken(tokens : ArrayList<Token>, tokenIndex : Int, breakIndex : Int, removeBreakChar : Boolean) : String {
+    private fun _breakInsideToken(tokens: ArrayList<Token>, tokenIndex: Int, breakIndex: Int, removeBreakChar: Boolean): String {
         val newBreakToken = Token(
                 type = TYPE_NEWLINE
         )
@@ -229,11 +241,7 @@ open class ROTTextClass {
                 type = TYPE_TEXT,
                 value = tokens[tokenIndex].value.substring(breakIndex + (if (removeBreakChar) 1 else 0))
         )
-        tokens.addAll(tokenIndex+1, listOf(newBreakToken, newTextToken))
+        tokens.addAll(tokenIndex + 1, listOf(newBreakToken, newTextToken))
         return tokens[tokenIndex].value.substring(0, breakIndex)
     }
-
-}
-
-val ROTText = object : ROTTextClass() {
 }

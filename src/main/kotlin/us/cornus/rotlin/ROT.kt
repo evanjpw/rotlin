@@ -6,7 +6,7 @@ package us.cornus.rotlin
 
 private typealias DirectionalConstants = Array<Array<Int>>
 
-val ROT = object {
+object ROT {
 
     /**
      * @returns {bool} Is rot.js supported by this browser?
@@ -49,7 +49,7 @@ val ROT = object {
             arrayOf(-2,  0)
     )
 
-        val DIRS = mapOf(
+    val DIRS = mapOf(
             "4" to dirs_4,
             "8" to dirs_8,
             "6" to dirs_6
@@ -364,3 +364,4 @@ val ROT = object {
     /** Linux support for this keycode was added in Gecko 4.0.	 */
     val VK_SLEEP = 9
 }
+
