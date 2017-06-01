@@ -96,7 +96,7 @@ class PathTest {
 /* dijkstra */
 
     /* 8-topology */
-    @Test fun dijkstra8TopologyTest1() {
+    @Test fun dijkstra8Topology1Test() {
         val PATH_A = listOf(0, 1, 0, 2, 0, 3, 1, 4, 2, 4, 3, 4, 4, 4)
         val dijkstra = Dijkstra(Z[0], Z[1], PASSABLE_CALLBACK_48, PathOptions(topology = 8))
 
@@ -104,7 +104,7 @@ class PathTest {
         assertEquals("should compute correct path A", PATH_A.toString(), PATH.toString())
     }
 
-    @Test fun dijkstra8TopologyTest2() {
+    @Test fun dijkstra8Topology2Test() {
         val PATH_B = listOf(2, 2, 1, 2, 0, 3, 1, 4, 2, 4, 3, 4, 4, 4)
         val dijkstra = Dijkstra(Z[0], Z[1], PASSABLE_CALLBACK_48, PathOptions(topology = 8))
 
@@ -112,7 +112,7 @@ class PathTest {
         assertEquals("should compute correct path B", PATH_B.toString(), PATH.toString())
     }
 
-    @Test fun dijkstra8TopologyTest3() {
+    @Test fun dijkstra8Topology3Test() {
         val dijkstra = Dijkstra(Z[0], Z[1], PASSABLE_CALLBACK_48, PathOptions(topology = 8))
 
         dijkstra.compute(X[0], X[1], PATH_CALLBACK)
@@ -121,7 +121,7 @@ class PathTest {
 
 
     /* 4-topology */
-    @Test fun dijkstra4TopologyTest1() {
+    @Test fun dijkstra4Topology1Test() {
         val PATH_A = listOf(0, 1, 0, 2, 0, 3, 0, 4, 1, 4, 2, 4, 3, 4, 4, 4)
         val dijkstra = Dijkstra(Z[0], Z[1], PASSABLE_CALLBACK_48, PathOptions(topology = 4))
 
@@ -129,7 +129,7 @@ class PathTest {
         assertEquals("should compute correct path A", PATH_A.toString(), PATH.toString())
     }
 
-    @Test fun dijkstra4TopologyTest2() {
+    @Test fun dijkstra4Topology2Test() {
         val PATH_B = listOf(2, 2, 1, 2, 0, 2, 0, 3, 0, 4, 1, 4, 2, 4, 3, 4, 4, 4)
         val dijkstra = Dijkstra(Z[0], Z[1], PASSABLE_CALLBACK_48, PathOptions(topology = 4))
 
@@ -137,7 +137,7 @@ class PathTest {
         assertEquals("should compute correct path B", PATH_B.toString(), PATH.toString())
     }
 
-    @Test fun dijkstra4TopologyTest3() {
+    @Test fun dijkstra4Topology3Test() {
         val dijkstra = Dijkstra(Z[0], Z[1], PASSABLE_CALLBACK_48, PathOptions(topology = 4))
 
         dijkstra.compute(X[0], X[1], PATH_CALLBACK)
@@ -146,7 +146,7 @@ class PathTest {
 
 
     /* 6-topology */
-    @Test fun dijkstra6TopologyTest1() {
+    @Test fun dijkstra6Topology1Test() {
         val PATH_A = listOf(4, 0, 2, 0, 1, 1, 2, 2, 3, 3, 5, 3, 6, 2, 8, 2, 9, 3, 8, 4)
 
         val dijkstra = Dijkstra(Z6[0], Z6[1], PASSABLE_CALLBACK_6, PathOptions(topology = 6))
@@ -156,7 +156,7 @@ class PathTest {
 
     }
 
-    @Test fun dijkstra6TopologyTest2() {
+    @Test fun dijkstra6Topology2Test() {
         val PATH_B = listOf(10, 0, 9, 1, 8, 2, 9, 3, 8, 4)
         val dijkstra = Dijkstra(Z6[0], Z6[1], PASSABLE_CALLBACK_6, PathOptions(topology = 6))
 
@@ -164,7 +164,7 @@ class PathTest {
         assertEquals("should compute correct path B", PATH_B.toString(), PATH.toString())
     }
 
-    @Test fun dijkstra6TopologyTest3() {
+    @Test fun dijkstra6Topology3Test() {
         val dijkstra = Dijkstra(Z6[0], Z6[1], PASSABLE_CALLBACK_6, PathOptions(topology = 6))
 
         dijkstra.compute(X6[0], X6[1], PATH_CALLBACK)
@@ -174,7 +174,7 @@ class PathTest {
 
     /* A* */
     /* 8-topology */
-    @Test fun aStar8TopologyTest1() {
+    @Test fun aStar8Topology1Test() {
         val PATH_A = listOf(0, 1, 0, 2, 0, 3, 1, 4, 2, 4, 3, 4, 4, 4)
         val astar = AStar(Z[0], Z[1], PASSABLE_CALLBACK_48, PathOptions(topology = 8))
 
@@ -182,7 +182,7 @@ class PathTest {
         assertEquals("should compute correct path A", PATH_A.toString(), PATH.toString())
     }
 
-    @Test fun aStar8TopologyTest2() {
+    @Test fun aStar8Topology2Test() {
         val PATH_B = listOf(2, 2, 1, 2, 0, 3, 1, 4, 2, 4, 3, 4, 4, 4)
         val astar = AStar(Z[0], Z[1], PASSABLE_CALLBACK_48, PathOptions(topology = 8))
 
@@ -190,7 +190,7 @@ class PathTest {
         assertEquals("should compute correct path B", PATH_B.toString(), PATH.toString())
     }
 
-    @Test fun aStar8TopologyTest3() {
+    @Test fun aStar8Topology3Test() {
         val astar = AStar(Z[0], Z[1], PASSABLE_CALLBACK_48, PathOptions(topology = 8))
 
 
@@ -198,7 +198,7 @@ class PathTest {
         assertEquals("should survive non-existant path X", 0, PATH.size)
     }
 
-    @Test fun aStar8TopologyTest4() {
+    @Test fun aStar8Topology4Test() {
         val open_astar = AStar(0, 0, PASSABLE_CALLBACK_VISIT, PathOptions(topology = 8))
 
         open_astar.compute(50, 0, PATH_CALLBACK)
@@ -207,7 +207,7 @@ class PathTest {
     }
 
     /* 4-topology */
-    @Test fun aStar4TopologyTest1() {
+    @Test fun aStar4Topology1Test() {
         val PATH_A = listOf(0, 1, 0, 2, 0, 3, 0, 4, 1, 4, 2, 4, 3, 4, 4, 4)
         val astar = AStar(Z[0], Z[1], PASSABLE_CALLBACK_48, PathOptions(topology = 4))
 
@@ -215,7 +215,7 @@ class PathTest {
         assertEquals("should compute correct path A", PATH_A.toString(), PATH.toString())
     }
 
-    @Test fun aStar4TopologyTest2() {
+    @Test fun aStar4Topology2Test() {
         val PATH_B = listOf(2, 2, 1, 2, 0, 2, 0, 3, 0, 4, 1, 4, 2, 4, 3, 4, 4, 4)
         val astar = AStar(Z[0], Z[1], PASSABLE_CALLBACK_48, PathOptions(topology = 4))
 
@@ -223,7 +223,7 @@ class PathTest {
         assertEquals("should compute correct path B", PATH_B.toString(), PATH.toString())
     }
 
-    @Test fun aStar4TopologyTest3() {
+    @Test fun aStar4Topology3Test() {
         val astar = AStar(Z[0], Z[1], PASSABLE_CALLBACK_48, PathOptions(topology = 4))
 
 
@@ -233,7 +233,7 @@ class PathTest {
 
 
     /* 6-topology */
-    @Test fun aStarTest6Topology1() {
+    @Test fun aStar6Topology1Test() {
         val PATH_A = listOf(4, 0, 2, 0, 1, 1, 2, 2, 3, 3, 5, 3, 6, 2, 8, 2, 9, 3, 8, 4)
         val astar = AStar(Z6[0], Z6[1], PASSABLE_CALLBACK_6, PathOptions(topology = 6))
 
@@ -242,7 +242,7 @@ class PathTest {
         assertEquals("should compute correct path A", PATH_A.toString(), PATH.toString())
     }
 
-    @Test fun aStarTest6Topolog2y() {
+    @Test fun aStar6Topology2Test() {
         val PATH_B = listOf(10, 0, 9, 1, 8, 2, 9, 3, 8, 4)
         val astar = AStar(Z6[0], Z6[1], PASSABLE_CALLBACK_6, PathOptions(topology = 6))
 
@@ -250,7 +250,7 @@ class PathTest {
         assertEquals("should compute correct path B", PATH_B.toString(), PATH.toString())
     }
 
-    @Test fun aStarTest6Topology3() {
+    @Test fun aStar6Topology3Test() {
         val astar = AStar(Z6[0], Z6[1], PASSABLE_CALLBACK_6, PathOptions(topology = 6))
 
         astar.compute(X6[0], X6[1], PATH_CALLBACK)

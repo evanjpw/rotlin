@@ -62,7 +62,7 @@ class ROTTextTest {
         assertEquals("should remove unnecessary spaces at the end", 2, size12.height)
     }
 
-    @Test fun colorFormatting() {
+    @Test fun colorFormattingTest() {
         val size0 = ROTText.measure("aaa%c{x}bbb")
         assertEquals("should not break with formatting part", 1, size0.height)
 

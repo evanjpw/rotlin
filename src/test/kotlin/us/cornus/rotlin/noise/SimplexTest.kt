@@ -11,7 +11,7 @@ class SimplexTest {
         val EPSILON = 0.0
 
    @Test
-    fun get() {
+    fun getTest() {
         val simplex = Simplex()
         val noise0 = simplex.get(0, 0)
         assertEquals(0.0, noise0, EPSILON)

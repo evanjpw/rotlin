@@ -1,5 +1,4 @@
 Files to convert:
-* color.js
 * engine.js
 * lighting.js
 * display/backend.js
@@ -28,7 +27,6 @@ Files to convert:
 * scheduler/scheduler.js
 
 Tests to covert:
-* tests/color.js
 * tests/display.js
 * tests/dungeon.js
 * tests/engine.js
@@ -37,3 +35,4 @@ Tests to covert:
 
 Things to work on:
 * StringGenerator.kt <--- **Almost certainly wrong!** generate() produces obviously incorrect results
+* Add to AllTests: ROTColorTest
